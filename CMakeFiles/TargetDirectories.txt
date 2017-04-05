@@ -1,4 +1,0 @@
-/home/hackerton/atoms/CMakeFiles/rebuild_cache.dir
-/home/hackerton/atoms/CMakeFiles/storage.dir
-/home/hackerton/atoms/CMakeFiles/edit_cache.dir
-/home/hackerton/atoms/CMakeFiles/dLearn.dir
