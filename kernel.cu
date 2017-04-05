@@ -5,12 +5,6 @@
 #include <cublas_v2.h>
 #include <curand.h>
 
-//Thrust Library
-#include <thrust/host_vector.h>
-#include <thrust/device_vector.h>
-#include <thrust/device_ptr.h>
-#include <thrust/reduce.h>
-
 //C++ Library
 #include <stdio.h>
 #include <cstdio>
