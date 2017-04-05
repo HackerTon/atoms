@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hackerton/atoms/smartptr.hpp
+
+/home/hackerton/atoms/storage.cpp
+storage.h
+/home/hackerton/atoms/storage.h
+cstdio
+-
+iostream
+-
+
+/home/hackerton/atoms/storage.h
+smartptr.hpp
+/home/hackerton/atoms/smartptr.hpp
+
