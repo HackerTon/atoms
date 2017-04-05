@@ -20,7 +20,6 @@
 //#include <opencv2\core.hpp>
 
 using namespace std;
-using namespace thrust;
 
 //MACRO
 #define SIZEOF(width, height, typevariable) sizeof(typevariable)*(width*height)
@@ -42,7 +41,7 @@ int main(int argc, char* argv[]) {
 	try
 	{
 		map_gather();
-		curand_function();
+//		curand_function();
 
 		cout << "PROGRAM FINISHED" << endl;
 	}
@@ -174,7 +173,6 @@ void curand_function() {
 
 	crand(curandGenerate(generator, memNumber, SIZE));
 
-	cuda(cudaMemcpy(raw_pointer_cast(&cpuMem[0]), memNumber, sizeof(unsigned int)* SIZE, cudaMemcpyDeviceToHost));
 	cuda(cudaMemcpy(*cpuMem, memNumber, sizeof(unsigned int)* SIZE, cudaMemcpyDeviceToHost));
 
 	storage st(cpuMem, SIZE);
