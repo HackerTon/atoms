@@ -33,7 +33,21 @@ const int SIZE = 2<<27;
 template <unsigned int convWidth, unsigned  int widthofmat> __global__ void Map_Gather(int*, int*, int*);
 __host__ void map_gather();
 void curand_function();
-void display(int, int, int*);
+
+class deepLearning{
+public:
+	void display(int width, int height, int* ptr);
+private:
+	int* dMem = nullptr;
+	int* OdMem = nullptr;
+	int* OhMem = nullptr;
+	int* ConvdMem = nullptr;
+	int* ConvhMem = nullptr;
+	int* hMem = nullptr;
+
+	const int imageSize = 10;
+	const int convSize = imageSize - 2;
+};
 
 
 int main(int argc, char* argv[]) {
@@ -118,10 +132,10 @@ __host__ void map_gather() {
 	ConvhMem[8] = 0;
 
 	cout << "IMAGE LAYER" << endl;
-	display(imageSize, imageSize, hMem);
+//	display(imageSize, imageSize, hMem);
 
 	cout << "CONV LAYER" << endl;
-	display(3, 3, ConvhMem);
+//	display(3, 3, ConvhMem);
 
 	cuda(cudaMemcpy(dMem, hMem, SIZEOF(imageSize, imageSize, int), cudaMemcpyHostToDevice));
 	cuda(cudaMemcpy(ConvdMem, ConvhMem, SIZEOF(3, 3, int), cudaMemcpyHostToDevice));
@@ -134,7 +148,7 @@ __host__ void map_gather() {
 
 	cout << "ACTIVATION LAYER 1" << endl;
 
-	display(convSize, convSize, OhMem);
+//	display(convSize, convSize, OhMem);
 
 	cuda(cudaFree(dMem));
 	cuda(cudaFree(ConvdMem));
@@ -188,7 +202,7 @@ void curand_function() {
 	memNumber = nullptr;
 }
 
-void display(int width, int height, int* ptr) {
+void deepLearning::display(int width, int height, int* ptr) {
 	for (int y = 0; y < height; ++y) {
 		for (int x = 0; x < width; ++x) {
 			cout << ptr[LOC(x, y, width)] << ",";
