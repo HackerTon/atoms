@@ -27,5 +27,6 @@
 *.exe
 *.out
 *.app
+dLearn
 
 CMakefiles
