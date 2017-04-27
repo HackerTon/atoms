@@ -17,9 +17,10 @@
 #include "storage.h"
 
 //OPENCV Library
-//#include <opencv2\core.hpp>
+#include <opencv2/core/core.hpp>
 
 using namespace std;
+using namespace cv;
 
 //MACRO
 #define SIZEOF(width, height, typevariable) sizeof(typevariable)*(width*height)
@@ -33,6 +34,14 @@ const int SIZE = 2<<27;
 template <unsigned int convWidth, unsigned  int widthofmat> __global__ void Map_Gather(int*, int*, int*);
 __host__ void map_gather();
 void curand_function();
+
+class image_config{
+public:
+	image_config() = delete;
+	void read_image(string fileName = "");
+private:
+
+};
 
 class deepLearning{
 public:
@@ -200,6 +209,10 @@ void curand_function() {
 	//Initialize To NULL
 	generator = nullptr;
 	memNumber = nullptr;
+}
+
+void image_config::read_image(string fileName = ""){
+	Mat image;
 }
 
 void deepLearning::display(int width, int height, int* ptr) {
