@@ -54,6 +54,9 @@ private:
 	int* ConvhMem = nullptr;
 	int* hMem = nullptr;
 
+	//TEST PARM
+	int print;
+
 	const int imageSize = 10;
 	const int convSize = imageSize - 2;
 };
@@ -82,7 +85,7 @@ template <unsigned int convWidth, unsigned  int widthofmat> __global__ void Map_
 
 	const int ix = threadIdx.x;
 	const int iy = threadIdx.y;
-	 
+
 	for (int i_y = 0; i_y < 3; ++i_y) {
 
 		for (int i_x = 0; i_x < 3; ++i_x) {
