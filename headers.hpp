@@ -11,12 +11,12 @@ enum TYPE_ERROR {
 	CURAND = 2
 };
 
-class Exception : public std::exception {
+class errorExcept : public std::exception {
 public:
-	Exception(const int, const cudaError_t);
-	Exception(const int, const cublasStatus_t);
-	Exception(const int, const curandStatus_t);
-	Exception(const int);
+	errorExcept(const int, const cudaError_t);
+	errorExcept(const int, const cublasStatus_t);
+	errorExcept(const int, const curandStatus_t);
+	errorExcept(const int);
 
 	int Line = 0;
 	TYPE_ERROR type = (TYPE_ERROR)0;
@@ -30,19 +30,19 @@ private:
 inline void cuda_error(const cudaError_t problem, const short int line) {
 
 	if (problem != 0) {
-		throw Exception(line, problem);
+		throw errorExcept(line, problem);
 	}
 }
 
 inline void curand_error(const curandStatus_t problem, const short int line) {
 
 	if (problem != 0) {
-		throw Exception(line, problem);
+		throw errorExcept(line, problem);
 	}
 }
 
-//Exception Handling CLASS
-Exception::Exception(const int LINE, const cudaError_t ERROR) : Line(LINE), error(ERROR), type((TYPE_ERROR)CUDA) {};
-Exception::Exception(const int LINE, const cublasStatus_t ERROR) : Line(LINE), error(ERROR), type((TYPE_ERROR)CUBLAS) {};
-Exception::Exception(const int LINE, const curandStatus_t ERROR) : Line(LINE), error(ERROR), type((TYPE_ERROR)CURAND) {};
-Exception::Exception(const int LINE) : Line(LINE) {};
+//errorExcept Handling CLASS
+errorExcept::errorExcept(const int LINE, const cudaError_t ERROR) : Line(LINE), error(ERROR), type((TYPE_ERROR)CUDA) {};
+errorExcept::errorExcept(const int LINE, const cublasStatus_t ERROR) : Line(LINE), error(ERROR), type((TYPE_ERROR)CUBLAS) {};
+errorExcept::errorExcept(const int LINE, const curandStatus_t ERROR) : Line(LINE), error(ERROR), type((TYPE_ERROR)CURAND) {};
+errorExcept::errorExcept(const int LINE) : Line(LINE) {};

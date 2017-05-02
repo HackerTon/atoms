@@ -38,7 +38,7 @@ void curand_function();
 class image_config{
 public:
 	image_config() = delete;
-	void read_image(string fileName = "");
+	void read_image(string);
 private:
 
 };
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 
 		cout << "PROGRAM FINISHED" << endl;
 	}
-	catch (const Exception& excep) {
+	catch (const errorExcept& excep) {
 		cerr << "Error found at line " << excep.Line << " with error code " << excep.type << " and error type " << excep.type << endl;;
 		return -1;
 	}
@@ -209,12 +209,12 @@ void curand_function() {
 	crand(curandDestroyGenerator(generator));
 	cuda(cudaFree(memNumber));
 
-	//Initialize To NULL
+	//Initialize To NULLls
 	generator = nullptr;
 	memNumber = nullptr;
 }
 
-void image_config::read_image(string fileName = ""){
+void image_config::read_image(string fileName = "") {
 	Mat image;
 }
 
