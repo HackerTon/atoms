@@ -1,6 +1,7 @@
 #pragma once
 
 #include "smartptr.hpp"
+#include <cstdio>
 
 class storage {
 public:
@@ -11,4 +12,5 @@ public:
 private:
 	ptr::uPtr<unsigned int> storage_buffer = nullptr;
 	int size = 0;
+	FILE *file = nullptr;
 };

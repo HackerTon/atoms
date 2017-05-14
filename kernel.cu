@@ -66,8 +66,8 @@ int main(int argc, char* argv[]) {
 
 	try
 	{
-		map_gather();
-//		curand_function();
+//		map_gather();
+		curand_function();
 
 		cout << "PROGRAM FINISHED" << endl;
 	}
@@ -202,6 +202,10 @@ void curand_function() {
 	cuda(cudaMemcpy(*cpuMem, memNumber, sizeof(unsigned int)* SIZE, cudaMemcpyDeviceToHost));
 
 	storage st(cpuMem, SIZE);
+
+	st.write_to_file("FILE");
+
+	st.read_from_file("FILE");
 
 	st.print(SIZE);
 

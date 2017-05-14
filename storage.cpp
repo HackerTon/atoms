@@ -16,40 +16,41 @@ void storage::print(const int size) {
 }
 
 void storage::write_to_file(const char* name) {
-	if (name != "") {
-		FILE *file = nullptr;
+	if (name != NULL) {
 
 		file = fopen(name, "wb");
 
 		if (file != NULL) {
-			fwrite(*storage_buffer, size, sizeof(int), file);
+			if (storage_buffer.check()) {
+				fwrite(*storage_buffer, size, sizeof(int), file);
 
-			fclose(file);
+				fclose(file);
+
+			}
 		}
 	}
 }
 
 void storage::read_from_file(const char* name) {
-	if (name != "") {
-		FILE* file = nullptr;
+	if (name !=  NULL) {
 
 		file = fopen(name, "rb");
 
 		if (file != NULL) {
 			if (storage_buffer.check()) {
 
-				cout << "BUFFER ALLOCATED";
+				storage_buffer.~uPtr();
 
-				fclose(file);
+				cin.get();
 
-				return;
-			}
-			else {
-				fread(*storage_buffer, size, sizeof(int), file);
+				storage_buffer.initialize(new unsigned int[size]);
+
+				fread(*storage_buffer, sizeof(unsigned int), size, file);
 
 				fclose(file);
 			}
 		}
 
 	}
+
 }
